@@ -16,13 +16,13 @@ internal class Program
 
             // logica
             Console.WriteLine("Informe o lado de X:");
-            int ladox = Convert.ToInt32(Console.ReadLine(ladox));
+            int ladox = Convert.ToInt32(Console.ReadLine());
 
             Console.WriteLine("Informe o lado de Y:");
-            int ladoy = Convert.ToInt32(Console.ReadLine(ladoy));
+            int ladoy = Convert.ToInt32(Console.ReadLine());
 
             Console.WriteLine("Informe o lado de Z:");
-            int ladoz = Convert.ToInt32(Console.ReadLine(ladoz));
+            int ladoz = Convert.ToInt32(Console.ReadLine());
 
             // interacao do usuario ( retorno externo )
 
