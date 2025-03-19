@@ -1,4 +1,6 @@
-﻿namespace ClassificacaodeTriangulo.ConsoleApp1;
+﻿using System.ComponentModel.Design;
+
+namespace ClassificacaodeTriangulo.ConsoleApp1;
 
 internal class Program
 {
@@ -11,6 +13,7 @@ internal class Program
             Console.WriteLine("__________________________");
             Console.WriteLine("Classificação do Triangulo");
             Console.WriteLine("__________________________");
+            Console.WriteLine("\n");
 
             ///////// logica________________________________________________________________________
             Console.Write("Informe o lado de X: ");
@@ -34,11 +37,33 @@ internal class Program
             ladoz + ladoy > ladox;
 
             if (medidasdotriangulovalidada == true)
-            Console.WriteLine(" ** O Triangulo é Válido ** ");
+            {
+                
+                // equilatero = todos lados iguais
+                // isosceles = dois lados iguis
+                // escaleno = todos os lados diferentes
+
+                string tipodetriangulo = "Não Classificado";
+                    if (ladox == ladoy && ladoy == ladoz)
+                tipodetriangulo = " O Triângulo é equilátero ";
+
+                    else if (ladox != ladoy && ladoy != ladoz && ladox != ladoz)
+                tipodetriangulo = " O Triângulo é escaleno!";
+
+                    else 
+                tipodetriangulo = " O Triângulo é Isósceles";
+
+                Console.WriteLine("\n");
+
+                Console.WriteLine($" ** O Triangulo é {tipodetriangulo} ** ");
+            }
+
             else
             Console.WriteLine(" >> Valores do Triangulo é inválida << ");
 
             ///////// final ____________________________________________________________________ 
+            Console.WriteLine("\n");
+
             Console.Write("Deseja continuar? (S?N)");
             string opcaocontinuar = Console.ReadLine()!.ToUpper();
 
