@@ -15,17 +15,36 @@ internal class Program
             Console.WriteLine("__________________________");
             Console.WriteLine("\n");
 
-            ///////// logica________________________________________________________________________
-            Console.Write("Informe o lado de X: ");
-            int ladox = Convert.ToInt32(Console.ReadLine());
-
-            Console.Write("Informe o lado de Y: ");
-            int ladoy = Convert.ToInt32(Console.ReadLine());
-
-            Console.Write("Informe o lado de Z: ");
-            int ladoz = Convert.ToInt32(Console.ReadLine());
-
             //////// interacao do usuario ( retorno externo )______________________________________
+            int ladox;
+                while (true)
+            {
+                Console.Write("Informe o lado de X: ");
+
+                bool conseguiuconverter = int.TryParse(Console.ReadLine(), out ladox);
+                if (conseguiuconverter)
+                    break;
+            }
+
+            int ladoy;
+            while (true)
+            {
+                Console.Write("Informe o lado de Y: ");
+
+                bool conseguiuconverter = int.TryParse(Console.ReadLine(), out ladoy);
+                if (conseguiuconverter)
+                    break;
+            }
+            int ladoz;
+            while (true)
+            {
+                Console.Write("Informe o lado de Z: ");
+
+                bool conseguiuconverter = int.TryParse(Console.ReadLine(), out ladoz);
+                if (conseguiuconverter)
+                    break;
+            }
+
             Console.WriteLine("Valor de X: "+ladox);
             Console.WriteLine("Valor de Y: "+ladoy);
             Console.WriteLine("Valor de Z: "+ladoz);
