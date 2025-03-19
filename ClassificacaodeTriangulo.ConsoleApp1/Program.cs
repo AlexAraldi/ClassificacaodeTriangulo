@@ -1,99 +1,85 @@
-﻿using System.ComponentModel.Design;
+﻿using System;
+using System.ComponentModel.Design;
 
 namespace ClassificacaodeTriangulo.ConsoleApp1;
 
 internal class Program
 {
     static void Main(string[] args)
+
     {
         while (true)
         {
-            ///////// inicio _______________________________________________________________________
-            Console.Clear();
-            Console.WriteLine("__________________________");
-            Console.WriteLine("Classificação do Triangulo");
-            Console.WriteLine("__________________________");
-            Console.WriteLine("\n");
+            ExibirCabecalho();
 
-            //////// interacao do usuario ( retorno externo )______________________________________
-            int ladox;
-                while (true)
-            {
-                Console.Write("Informe o lado de X: ");
+            int ladox = LerValoresDigitados("X");
 
-                bool conseguiuconverter = int.TryParse(Console.ReadLine(), out ladox);
-                if (conseguiuconverter)
-                    break;
-            }
+            int ladoy = LerValoresDigitados("Y");
 
-            int ladoy;
-            while (true)
-            {
-                Console.Write("Informe o lado de Y: ");
+            int ladoz = LerValoresDigitados("Z");
 
-                bool conseguiuconverter = int.TryParse(Console.ReadLine(), out ladoy);
-                if (conseguiuconverter)
-                    break;
-            }
-            int ladoz;
-            while (true)
-            {
-                Console.Write("Informe o lado de Z: ");
+            ExibirValoresDigitados(ladox, ladoy, ladoz);
 
-                bool conseguiuconverter = int.TryParse(Console.ReadLine(), out ladoz);
-                if (conseguiuconverter)
-                    break;
-            }
+            bool medidasdotriangulovalidada = ValidarTriangulo(ladox, ladoy, ladoz);
 
-            Console.WriteLine("Valor de X: "+ladox);
-            Console.WriteLine("Valor de Y: "+ladoy);
-            Console.WriteLine("Valor de Z: "+ladoz);
+            Console.WriteLine(ClassificarTriangulo(medidasdotriangulovalidada, ladox, ladoy, ladoz));
 
-            //////// verificacao do triangulo _____________________________________________________
-            bool medidasdotriangulovalidada =  
-            ladox + ladoy > ladoz &&
-            ladox + ladoz > ladoy &&
-            ladoz + ladoy > ladox;
-
-            if (medidasdotriangulovalidada == true)
-            {
-                
-                // equilatero = todos lados iguais
-                // isosceles = dois lados iguis
-                // escaleno = todos os lados diferentes
-
-                string tipodetriangulo = "Não Classificado";
-                    if (ladox == ladoy && ladoy == ladoz)
-                tipodetriangulo = " O Triângulo é equilátero ";
-
-                    else if (ladox != ladoy && ladoy != ladoz && ladox != ladoz)
-                tipodetriangulo = " O Triângulo é escaleno!";
-
-                    else 
-                tipodetriangulo = " O Triângulo é Isósceles";
-
-                Console.WriteLine("\n");
-
-                Console.WriteLine($" ** O Triangulo é {tipodetriangulo} ** ");
-            }
-
-            else
-            Console.WriteLine(" >> Valores do Triangulo é inválida << ");
-
-            ///////// final ____________________________________________________________________ 
             Console.WriteLine("\n");
 
             Console.Write("Deseja continuar? (S?N)");
             string opcaocontinuar = Console.ReadLine()!.ToUpper();
 
-            if(opcaocontinuar!= "S")
-            break;
-
-
+            if (opcaocontinuar != "S")
+                break;
         }
+    }
+    static void ExibirCabecalho()
+    {
+        Console.Clear();
+        Console.WriteLine("__________________________");
+        Console.WriteLine("Classificação do Triangulo");
+        Console.WriteLine("__________________________");
+        Console.WriteLine("\n");
+    }
+    static int LerValoresDigitados(string lado)
+    {
+        int valor;
+        while (true)
+        {
+            Console.Write($"Informe o lado de {lado}: ");
 
+            bool conseguiuconverter = int.TryParse(Console.ReadLine(), out valor);
+            if (conseguiuconverter)
+                break;
+        }
+        return valor;
+    }
+    static void ExibirValoresDigitados(int ladox, int ladoy, int ladoz)
+    {
+        Console.WriteLine("Valor de X: " + ladox);
+        Console.WriteLine("Valor de Y: " + ladoy);
+        Console.WriteLine("Valor de Z: " + ladoz);
+    }
+    static bool ValidarTriangulo(int ldx, int ldy, int ldz)
+    {
+        bool medidasdotriangulovalidada = ldx + ldy > ldz && ldx + ldz > ldy && ldz + ldy > ldx;
+        return medidasdotriangulovalidada;
+    }
+    static string ClassificarTriangulo(bool validada, int ldx, int ldy, int ldz)
+    {
+        if (validada == true)
+        {
+            if (ldx == ldy && ldy == ldz)
+                return " O Triângulo é equilátero ";
 
-
+            else if (ldx != ldy && ldy != ldz && ldx != ldz)
+                return " O Triângulo é escaleno!";
+            else
+                return " O Triângulo é Isósceles";
+        }
+        else
+            return " >> Valores do Triangulo é inválida << ";
 
     }
 }
+
